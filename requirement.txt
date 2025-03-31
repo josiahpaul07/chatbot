@@ -1,6 +1,4 @@
-os
-langchain-anthropic
 streamlit
 langchain-core
 langchain-community
-langchain
+langchain-anthropic
