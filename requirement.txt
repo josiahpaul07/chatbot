@@ -1,7 +1,6 @@
 os
 langchain-anthropic
 streamlit
-python-dotenv
 langchain-core
 langchain-community
 langchain
