@@ -1,10 +1,8 @@
 import os
 import streamlit as st
-from dotenv import load_dotenv
 
 from langchain_core.prompts import ChatPromptTemplate
 
-load_dotenv()
 api_key= st.secrets["api"]["key"]
 
 template = """Based on the table schema below, write a SQL query without any explanation that would answer the user's question:
