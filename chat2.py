@@ -55,7 +55,11 @@ SQL Response: {response}"""
 prompt_response = ChatPromptTemplate.from_template(template)
 
 def run_query(query):
-    return db.run(query)
+    return db.run(query)def run_query(query):
+    try:
+        return db.run(query)
+    except Exception:
+        return "I couldn't generate a valid response. Please ask a different question."
 
 full_chain = (
     RunnablePassthrough.assign(query=sql_chain).assign(
@@ -83,12 +87,11 @@ if st.button("Get Answer"):
         response = full_chain.invoke({"question": user_question})
 
         st.subheader("💡 AI Response:")
-        st.write(response)
-
-        # Debugging: Show SQL Query
-        #sql_query = sql_chain({"question": user_question})
-        #st.subheader("📝 Generated SQL Query:")
-        #st.code(sql_query, language="sql")
-
+        
+        if response == "I couldn't generate a valid response. Please ask a different question.":
+            st.warning(response)  # Show a non-intrusive warning
+        else:
+            st.write(response)
     else:
         st.warning("Please enter a question.")
+        
