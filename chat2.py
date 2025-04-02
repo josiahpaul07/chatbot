@@ -55,7 +55,6 @@ SQL Response: {response}"""
 prompt_response = ChatPromptTemplate.from_template(template)
 
 def run_query(query):
-    return db.run(query)def run_query(query):
     try:
         return db.run(query)
     except Exception:
